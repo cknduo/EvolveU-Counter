@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Capacity Count</title>
+        <style>
+            button { background: palevioletred; color: white; font-weight: 700; padding: 6px; margin: 3px; border: none }
+        </style>
+    </head>
+    <body style='font-family:Arial, Helvetica, sans-serif'>
+        <h1>Capacity Counter</h1>
+        <div style='margin-bottom: 6px'>
+            Current Count: <span id='counter'></span>
+        </div>
+        <button onClick='increase()'>Increase</button>
+        <button onClick='decrease()'>Decrease</button>
+        <script>
+            let value = 0
+
+            function updateCounter(countObject) {
+                let counterSpan = document.getElementById('counter')
+                counterSpan.innerHTML = countObject.count
+            }
+
+            function increase() {
+                fetch('/increase-count')
+                .then((response) => {
+                    return response.json()
+                })
+                .then((countObject) => {
+                    updateCounter(countObject)
+                })
+                updateCounter()
+            }
+
+            function decrease() {
+                fetch('/decrease-count')
+                .then((response) => {
+                    return response.json()
+                })
+                .then((countObject) => {
+                    updateCounter(countObject)
+                })
+                updateCounter()
+            }
+
+            function getLatestCount() {
+                fetch('/count')
+                .then((response) => {
+                    return response.json()
+                })
+                .then((countObject) => {
+                    updateCounter(countObject)
+                })
+                updateCounter()
+            }
+            
+            setInterval(getLatestCount, 3000)
+        </script>
+    </body>
+</html>
