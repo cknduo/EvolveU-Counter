@@ -4,6 +4,7 @@ const app = express()
 let PORT = process.env.PORT || 3000
 let count = 0
 
+// GET THE CURRENT COUNT
 app.get('/count', (req, res) => {
     console.log('Current count is: ' + count)
     res.send({count})
@@ -22,4 +23,4 @@ app.get('/decrease-count', (req, res) => {
 })
 
 app.use(express.static('static'))
-app.listen(PORT)
+app.listen(PORT)    
