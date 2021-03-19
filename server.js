@@ -4,6 +4,7 @@ const app = express()
 let PORT = process.env.PORT || 3000
 let count = 0
 
+// GET THE LATEST COUNT
 app.get('/count', (req, res) => {
     console.log('Current count is: ' + count)
     res.send({count})
