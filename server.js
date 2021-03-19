@@ -22,5 +22,5 @@ app.get('/decrease-count', (req, res) => {
     res.send({count})
 })
 
-app.use(express.static('static'))
+app.use(express.static('static')) //use express static snippet code
 app.listen(PORT)    
